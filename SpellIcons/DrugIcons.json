@@ -1,0 +1,40 @@
+{
+	"displayName": "DrugIcons",
+	"rowCount": 8,
+	"iconCount": 8,
+	"filterMode": "Point",
+	"icons": [
+		{
+			"index": 0,
+			"suggestedEffects": null
+		},
+		{
+			"index": 1,
+			"suggestedEffects": null
+		},
+		{
+			"index": 2,
+			"suggestedEffects": null
+		},
+		{
+			"index": 3,
+			"suggestedEffects": null
+		},
+		{
+			"index": 4,
+			"suggestedEffects": null
+		},
+		{
+			"index": 5,
+			"suggestedEffects": null
+		},
+		{
+			"index": 6,
+			"suggestedEffects": null
+		},
+		{
+			"index": 7,
+			"suggestedEffects": null
+		}
+	]
+}
