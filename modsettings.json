@@ -1,0 +1,85 @@
+{
+    "Version": "0.1",
+    "Sections": [
+        {
+            "Name": "General",
+            "Description": "General Settings for Tamriel Drugs",
+            "IsAdvanced": false,
+            "Keys": [
+                {
+                    "Min": 1.0,
+                    "Max": 100.0,
+                    "Value": 1.0,
+                    "Name": "DarilTolerance",
+                    "Description": "Tolerance level to daril",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderFloatKey"
+                },
+                {
+                    "Min": 1.0,
+                    "Max": 100.0,
+                    "Value": 1.0,
+                    "Name": "HagsBreathTolerance",
+                    "Description": "Tolerance level to hag's breath",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderFloatKey"
+                },
+                {
+                    "Min": 1.0,
+                    "Max": 100.0,
+                    "Value": 1.0,
+                    "Name": "HistSapTolerance",
+                    "Description": "Tolerance level to hist sap",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderFloatKey"
+                },
+                {
+                    "Min": 1.0,
+                    "Max": 100.0,
+                    "Value": 1.0,
+                    "Name": "MaraIncenseTolerance",
+                    "Description": "Tolerance level to incense of mara",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderFloatKey"
+                },
+                {
+                    "Min": 1.0,
+                    "Max": 100.0,
+                    "Value": 1.0,
+                    "Name": "MoonSugarTolerance",
+                    "Description": "Tolerance level to moon sugar",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderFloatKey"
+                },
+                {
+                    "Min": 1.0,
+                    "Max": 100.0,
+                    "Value": 1.0,
+                    "Name": "SkoomaTolerance",
+                    "Description": "Tolerance level to skooma",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderFloatKey"
+                },
+                {
+                    "Min": 1.0,
+                    "Max": 100.0,
+                    "Value": 1.0,
+                    "Name": "SleepingTreeSapTolerance",
+                    "Description": "Tolerance level to sleeping tree sap",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderFloatKey"
+                },
+                {
+                    "Min": 1.0,
+                    "Max": 100.0,
+                    "Value": 1.0,
+                    "Name": "TobaccoTolerance",
+                    "Description": "Tolerance level to tobacco",
+                    "$version": "v1",
+                    "$type": "DaggerfallWorkshop.Game.Utility.ModSupport.ModSettings.SliderFloatKey"
+                }
+            ],
+            "$version": "v1"
+        }
+    ]
+}

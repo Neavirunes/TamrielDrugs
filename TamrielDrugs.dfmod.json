@@ -1,0 +1,30 @@
+{
+    "ModTitle": "Tamriel Drugs",
+    "ModVersion": "0.1",
+    "ModAuthor": "Neavirunes",
+    "ContactInfo": "",
+    "DFUnity_Version": "0.13.5",
+    "ModDescription": "Adds lore-friendly drugs to the game\n\n\"feather\" by n0rthw1nd is marked with CC BY 2.0.\n\"File:Soda-lime glass jar showing bubbles trapped within.jpg\" by Zaereth is marked with CC BY-SA 4.0.\n\"Homemade Maple Syrup\" by Chiot's Run is marked with CC BY-NC 2.0.\n\"Smoking Incense Stick\" by zeevveez is marked with CC BY 2.0.\n\"Sugar\" by Uwe Hermann is marked with CC BY-SA 2.0.\n\"Rich Dark Chocolate Brownies (Gluten Free, Vegan, Refined Sugar Free) | cooking ala mel\" by cookingalamel is marked with CC BY-NC-ND 2.0.\n\"Tobacco Plant\" by Mickki is marked with CC BY-NC-SA 2.0.",
+    "GUID": "5ce483b8-3523-4251-96b5-0a8aa43a9a77",
+    "Files": [
+        "Assets/Game/Mods/TamrielDrugs/ItemTemplates.json",
+        "Assets/Game/Mods/TamrielDrugs/modsettings.json",
+        "Assets/Game/Mods/TamrielDrugs/Scripts/Drugs.cs",
+        "Assets/Game/Mods/TamrielDrugs/SpellIcons/DrugIcons.json",
+        "Assets/Game/Mods/TamrielDrugs/SpellIcons/DrugIcons.png",
+        "Assets/Game/Mods/TamrielDrugs/Textures/30900_0-0.PNG",
+        "Assets/Game/Mods/TamrielDrugs/Textures/30900_1-0.PNG",
+        "Assets/Game/Mods/TamrielDrugs/Textures/30900_2-0.PNG",
+        "Assets/Game/Mods/TamrielDrugs/Textures/30900_3-0.PNG",
+        "Assets/Game/Mods/TamrielDrugs/Textures/30900_4-0.PNG",
+        "Assets/Game/Mods/TamrielDrugs/Textures/30900_5-0.PNG",
+        "Assets/Game/Mods/TamrielDrugs/Textures/30900_6-0.PNG",
+        "Assets/Game/Mods/TamrielDrugs/Textures/30900_7-0.PNG",
+        "Assets/Game/Mods/TamrielDrugs/TamrielDrugs.dfmod.json"
+    ],
+    "Contributes": {
+        "SpellIcons": [
+            "DrugIcons"
+        ]
+    }
+}
