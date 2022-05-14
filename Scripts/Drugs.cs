@@ -88,7 +88,6 @@ namespace Drugs
 		static TargetTypes Target;
 
 		// - Crime Variables ---------------------------------------------------
-		static int Group;
 		static int HasDrugs;
 		static int HasSold;
 		static int Index;
@@ -464,7 +463,7 @@ namespace Drugs
 						HistSapEffect.TargetType = Target;
 						HistSapEffect.ElementType = Element;
 						HistSapEffect.Name = "Hist Sap Intoxication";
-						HistSapEffect.IconIndex = 0;
+						HistSapEffect.IconIndex = 2;
 						HistSapEffect.Icon = Icon;
 						HistSapEffect.MinimumCastingCost = false;
 						HistSapEffect.NoCastingAnims = true;
@@ -530,7 +529,7 @@ namespace Drugs
 					HistSapEffect1.TargetType = Target;
 					HistSapEffect1.ElementType = Element;
 					HistSapEffect1.Name = "Hist Sap Addiction";
-					HistSapEffect1.IconIndex = 0;
+					HistSapEffect1.IconIndex = 2;
 					HistSapEffect1.Icon = Icon;
 					HistSapEffect1.MinimumCastingCost = false;
 					HistSapEffect1.NoCastingAnims = true;
@@ -597,7 +596,7 @@ namespace Drugs
 						MaraIncenseEffect.TargetType = Target;
 						MaraIncenseEffect.ElementType = Element;
 						MaraIncenseEffect.Name = "Incense of Mara Intoxication";
-						MaraIncenseEffect.IconIndex = 0;
+						MaraIncenseEffect.IconIndex = 3;
 						MaraIncenseEffect.Icon = Icon;
 						MaraIncenseEffect.MinimumCastingCost = false;
 						MaraIncenseEffect.NoCastingAnims = true;
@@ -673,7 +672,7 @@ namespace Drugs
 						MoonSugarEffect.TargetType = Target;
 						MoonSugarEffect.ElementType = Element;
 						MoonSugarEffect.Name = "Moon Sugar Intoxication";
-						MoonSugarEffect.IconIndex = 0;
+						MoonSugarEffect.IconIndex = 4;
 						MoonSugarEffect.Icon = Icon;
 						MoonSugarEffect.MinimumCastingCost = false;
 						MoonSugarEffect.NoCastingAnims = true;
@@ -738,7 +737,7 @@ namespace Drugs
 					MoonSugarEffect1.TargetType = Target;
 					MoonSugarEffect1.ElementType = Element;
 					MoonSugarEffect1.Name = "Moon Sugar Addiction";
-					MoonSugarEffect1.IconIndex = 0;
+					MoonSugarEffect1.IconIndex = 4;
 					MoonSugarEffect1.Icon = Icon;
 					MoonSugarEffect1.MinimumCastingCost = false;
 					MoonSugarEffect1.NoCastingAnims = true;
@@ -807,7 +806,7 @@ namespace Drugs
 						SkoomaEffect.TargetType = Target;
 						SkoomaEffect.ElementType = Element;
 						SkoomaEffect.Name = "Skooma Intoxication";
-						SkoomaEffect.IconIndex = 0;
+						SkoomaEffect.IconIndex = 5;
 						SkoomaEffect.Icon = Icon;
 						SkoomaEffect.MinimumCastingCost = false;
 						SkoomaEffect.NoCastingAnims = true;
@@ -887,7 +886,7 @@ namespace Drugs
 					SkoomaEffect1.TargetType = Target;
 					SkoomaEffect1.ElementType = Element;
 					SkoomaEffect1.Name = "Skooma Addiction";
-					SkoomaEffect1.IconIndex = 0;
+					SkoomaEffect1.IconIndex = 5;
 					SkoomaEffect1.Icon = Icon;
 					SkoomaEffect1.MinimumCastingCost = false;
 					SkoomaEffect1.NoCastingAnims = true;
@@ -954,7 +953,7 @@ namespace Drugs
 						SleepingTreeSapEffect.TargetType = Target;
 						SleepingTreeSapEffect.ElementType = Element;
 						SleepingTreeSapEffect.Name = "Sleeping Tree Sap Intoxication";
-						SleepingTreeSapEffect.IconIndex = 0;
+						SleepingTreeSapEffect.IconIndex = 6;
 						SleepingTreeSapEffect.Icon = Icon;
 						SleepingTreeSapEffect.MinimumCastingCost = false;
 						SleepingTreeSapEffect.NoCastingAnims = true;
@@ -1031,7 +1030,7 @@ namespace Drugs
 						TobaccoEffect.TargetType = Target;
 						TobaccoEffect.ElementType = Element;
 						TobaccoEffect.Name = "Tobacco Intoxication";
-						TobaccoEffect.IconIndex = 0;
+						TobaccoEffect.IconIndex = 7;
 						TobaccoEffect.Icon = Icon;
 						TobaccoEffect.MinimumCastingCost = false;
 						TobaccoEffect.NoCastingAnims = true;
@@ -1072,6 +1071,8 @@ namespace Drugs
 						Crime = (PlayerEntity.Crimes)9; // "smuggling"
 						Player.CrimeCommitted = Crime;
 						Player.SpawnCityGuards(true);
+
+						DaggerfallUI.AddHUDText(string.Format("The guards have been called on you (Personality {0}/{1})", (int)RandoF1, (int)FPersonality));
 					}
 
 					TradeCheck = 0;
@@ -1700,6 +1701,7 @@ namespace Drugs
 					Crime = (PlayerEntity.Crimes)11; // "high treason"
 					Player.CrimeCommitted = Crime;
 					Player.SpawnCityGuards(true);
+					DaggerfallUI.AddHUDText(string.Format("You have been reported to the guards (Streetwise {0}/{1})", (int)RandoF1, (int)FStreetwise));
 
 					DrugCrime += 4;
 
