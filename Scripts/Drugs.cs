@@ -73,7 +73,6 @@ namespace Drugs
 		static int NewTime;
 		static int OldCount;
 		static int TIndex;
-		static int TradeCheck;
 		static ItemCollection Backpack;
 		static ItemCollection Wagon;
 		static IUserInterfaceManager Manager;
@@ -89,9 +88,9 @@ namespace Drugs
 
 		// - Crime Variables ---------------------------------------------------
 		static int HasDrugs;
-		static int HasSold;
 		static int Index;
 		static int NPCCheck;
+		static int TradeCheck;
 		// ---------------------------------------------------------------------
 
 		// - Save Variables ----------------------------------------------------
@@ -199,39 +198,6 @@ namespace Drugs
 
 		void Update()
 		{
-			if (GameManager.Instance.StateManager.CurrentState == StateManager.StateTypes.UI)
-			{
-				if (TradeCheck == 0)
-				{
-					if (HasSold == 0)
-					{
-						OldCount = 0;
-
-						Backpack = Player.Items;
-						for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
-						{
-							Drug = Backpack.GetItem(DIndex);
-							if (Drug.WorldTextureArchive == 30900)
-							{
-								OldCount += 1;
-							}
-						}
-
-						Wagon = Player.WagonItems;
-						for (DIndex = 0; DIndex < Wagon.Count; DIndex++)
-						{
-							Drug = Wagon.GetItem(DIndex);
-							if (Drug.WorldTextureArchive == 30900)
-							{
-								OldCount += 1;
-							}
-						}
-					}
-
-					TradeCheck = 1;
-				}
-			}
-
 			if (GameManager.Instance.StateManager.CurrentState == StateManager.StateTypes.Game)
 			{
 				if (KillPlayer == 1)
@@ -356,7 +322,7 @@ namespace Drugs
 							else
 							{
 								HagsBreathTaken -= 1;
-								TotalTaken -= 1;
+								//TotalTaken -= 1;
 
 								if (HagsBreathTaken == 0)
 								{
@@ -489,12 +455,12 @@ namespace Drugs
 
 				if (HistSapDamage == 1)
 				{
-					DrugsMod.ILuck = Player.Stats.LiveLuck;
-					DrugsMod.FLuck = 1f - ((float)DrugsMod.ILuck / 100f);
+					FLuck = 1f - ((float)Player.Stats.LiveLuck / 100f);
 
 					System.Random Drug = new System.Random();
 					RandoI = Drug.Next(0, 1073741823);
-					RandoF1 = ((float)RandoI * DrugsMod.FLuck) * 100f;
+
+					RandoF1 = ((float)RandoI * FLuck) * 100f;
 					RandoI = (int)RandoF1;
 
 					FWillpower = (1f - ((float)Player.Stats.LiveWillpower / 100f)) * 1073741823f;
@@ -525,7 +491,7 @@ namespace Drugs
 
 					EffectBundleSettings HistSapEffect1 = new EffectBundleSettings();
 					HistSapEffect1.Version = EntityEffectBroker.CurrentSpellVersion;
-					HistSapEffect1.BundleType = BundleTypes.Spell;
+					HistSapEffect1.BundleType = BundleTypes.Disease;
 					HistSapEffect1.TargetType = Target;
 					HistSapEffect1.ElementType = Element;
 					HistSapEffect1.Name = "Hist Sap Addiction";
@@ -566,7 +532,7 @@ namespace Drugs
 							else
 							{
 								MaraIncenseTaken -= 1;
-								TotalTaken -= 1;
+								//TotalTaken -= 1;
 
 								if (MaraIncenseTaken == 0)
 								{
@@ -697,12 +663,12 @@ namespace Drugs
 
 				if (MoonSugarDamage == 1)
 				{
-					DrugsMod.ILuck = Player.Stats.LiveLuck;
-					DrugsMod.FLuck = 1f - ((float)DrugsMod.ILuck / 100f);
+					FLuck = 1f - ((float)Player.Stats.LiveLuck / 100f);
 
 					System.Random Drug = new System.Random();
 					RandoI = Drug.Next(0, 1073741823);
-					RandoF1 = (float)RandoI * DrugsMod.FLuck;
+
+					RandoF1 = (float)RandoI * FLuck;
 					RandoI = (int)RandoF1;
 
 					FWillpower = (1f - ((float)Player.Stats.LiveWillpower / 100f)) * 1073741823f;
@@ -733,7 +699,7 @@ namespace Drugs
 
 					EffectBundleSettings MoonSugarEffect1 = new EffectBundleSettings();
 					MoonSugarEffect1.Version = EntityEffectBroker.CurrentSpellVersion;
-					MoonSugarEffect1.BundleType = BundleTypes.Spell;
+					MoonSugarEffect1.BundleType = BundleTypes.Disease;
 					MoonSugarEffect1.TargetType = Target;
 					MoonSugarEffect1.ElementType = Element;
 					MoonSugarEffect1.Name = "Moon Sugar Addiction";
@@ -831,12 +797,12 @@ namespace Drugs
 
 				if (SkoomaDamage == 1)
 				{
-					DrugsMod.ILuck = Player.Stats.LiveLuck;
-					DrugsMod.FLuck = 1f - ((float)DrugsMod.ILuck / 100f);
+					FLuck = 1f - ((float)Player.Stats.LiveLuck / 100f);
 
 					System.Random Drug = new System.Random();
 					RandoI = Drug.Next(0, 1073741823);
-					RandoF1 = (float)RandoI * DrugsMod.FLuck;
+
+					RandoF1 = (float)RandoI * FLuck;
 					RandoI = (int)RandoF1;
 
 					FWillpower = (1f - ((float)Player.Stats.LiveWillpower / 100f)) * 1073741823f;
@@ -882,7 +848,7 @@ namespace Drugs
 
 					EffectBundleSettings SkoomaEffect1 = new EffectBundleSettings();
 					SkoomaEffect1.Version = EntityEffectBroker.CurrentSpellVersion;
-					SkoomaEffect1.BundleType = BundleTypes.Spell;
+					SkoomaEffect1.BundleType = BundleTypes.Disease;
 					SkoomaEffect1.TargetType = Target;
 					SkoomaEffect1.ElementType = Element;
 					SkoomaEffect1.Name = "Skooma Addiction";
@@ -965,7 +931,7 @@ namespace Drugs
 						EntityEffectManager SleepingTreeSapManager = Behavior.GetComponent<EntityEffectManager>();
 						SleepingTreeSapManager.AssignBundle(SleepingTreeSapBundle, AssignBundleFlags.BypassSavingThrows);
 
-						Player.IncreaseHealth(1);
+						Player.IncreaseHealth(4);
 						SleepingTreeSapSCheck = 1;
 					}
 				}
@@ -1055,7 +1021,25 @@ namespace Drugs
 				// -------------------------------------------------------------
 
 				// - Crime Code ------------------------------------------------
-				if (TradeCheck == 2)
+				if (TradeCheck == 0)
+				{
+					OldCount = 0;
+
+					Backpack = Player.Items;
+					for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
+					{
+						Drug = Backpack.GetItem(DIndex);
+						ItemData_v1 Data = Drug.GetSaveData();
+
+						if (Data.worldTextureArchive == 30900)
+						{
+							OldCount += 1;
+						}
+					}
+
+					TradeCheck = 1;
+				}
+				else if (TradeCheck == 2)
 				{
 					System.Random Drug = new System.Random();
 					RandoI = Drug.Next(0, 101);
@@ -1071,6 +1055,8 @@ namespace Drugs
 						Crime = (PlayerEntity.Crimes)9; // "smuggling"
 						Player.CrimeCommitted = Crime;
 						Player.SpawnCityGuards(true);
+
+						DrugCrime += 2;
 
 						DaggerfallUI.AddHUDText(string.Format("The guards have been called on you (Personality {0}/{1})", (int)RandoF1, (int)FPersonality));
 					}
@@ -1097,7 +1083,7 @@ namespace Drugs
 								Player.CrimeCommitted = Crime;
 
 								DrugCrime -= 2;
-								HasSold = 0;
+								TradeCheck = 0;
 
 								break;
 							case 4:
@@ -1146,6 +1132,13 @@ namespace Drugs
 			DaggerfallUnity.Instance.ItemHelper.RegisterCustomItem(30907, ItemGroups.UselessItems2, typeof(TobaccoItem));
 			// -----------------------------------------------------------------
 
+			// - Register vanilla items ----------------------------------------
+			DaggerfallUnity.Instance.ItemHelper.RegisterItemUseHandler(262, HolyWater);
+			DaggerfallUnity.Instance.ItemHelper.RegisterItemUseHandler(269, HolyCandle);
+			DaggerfallUnity.Instance.ItemHelper.RegisterItemUseHandler(270, HolyDagger);
+			DaggerfallUnity.Instance.ItemHelper.RegisterItemUseHandler(271, HolyTome);
+			// -----------------------------------------------------------------
+
 			// - Event Handlers ------------------------------------------------
 			DaggerfallAction.OnTeleportAction += DrugsOnTeleport;
 			DaggerfallCourtWindow.OnCourtScreen += DrugsCourtBegin;
@@ -1163,7 +1156,7 @@ namespace Drugs
 			Element = ElementTypes.None;
 
 			ESettings1 = new EffectSettings();
-			ESettings1.DurationBase = 3600;
+			ESettings1.DurationBase = 45;
 			ESettings1.DurationPlus = 0;
 			ESettings1.DurationPerLevel = 1;
 			ESettings1.ChanceBase = 100;
@@ -1176,7 +1169,7 @@ namespace Drugs
 			ESettings1.MagnitudePerLevel = 1;
 
 			ESettings2 = new EffectSettings();
-			ESettings2.DurationBase = 3600;
+			ESettings2.DurationBase = 45;
 			ESettings2.DurationPlus = 0;
 			ESettings2.DurationPerLevel = 1;
 			ESettings2.ChanceBase = 100;
@@ -1508,11 +1501,119 @@ namespace Drugs
 			}
 		}
 
+		public static bool HolyWater(DaggerfallUnityItem item, ItemCollection collection)
+		{
+			ItemData_v1 Data = item.GetSaveData();
+			int Condition = Data.hits1;
+
+			if (Condition > 0)
+			{
+				int Level = Player.Level;
+				Level = (Level * 2) + 4;
+
+				System.Random Drug = new System.Random();
+				RandoI = Drug.Next(0, 101);
+
+				if (RandoI < Level)
+				{
+					DaggerfallEntityBehaviour Behavior = GameManager.Instance.PlayerEntityBehaviour;
+					EntityEffectManager DispelManager = Behavior.GetComponent<EntityEffectManager>();
+					DispelManager.ClearSpellBundles();
+				}
+
+				Condition -= 1;
+				Data.hits1 = Condition;
+			}
+
+			return true;
+		}
+
+		public static bool HolyCandle(DaggerfallUnityItem item, ItemCollection collection)
+		{
+			ItemData_v1 Data = item.GetSaveData();
+			int Condition = Data.hits1;
+
+			if (Condition > 0)
+			{
+				int Level = Player.Level;
+				Level = (Level * 2) + 2;
+
+				System.Random Drug = new System.Random();
+				RandoI = Drug.Next(0, 101);
+
+				if (RandoI < Level)
+				{
+					DaggerfallEntityBehaviour Behavior = GameManager.Instance.PlayerEntityBehaviour;
+					EntityEffectManager DispelManager = Behavior.GetComponent<EntityEffectManager>();
+					DispelManager.ClearSpellBundles();
+				}
+
+				Condition -= 1;
+				Data.hits1 = Condition;
+			}
+
+			return true;
+		}
+
+		public static bool HolyDagger(DaggerfallUnityItem item, ItemCollection collection)
+		{
+			ItemData_v1 Data = item.GetSaveData();
+			int Condition = Data.hits1;
+
+			if (Condition > 0)
+			{
+				int Level = Player.Level;
+				Level = (Level * 2) + 6;
+
+				System.Random Drug = new System.Random();
+				RandoI = Drug.Next(0, 101);
+
+				if (RandoI < Level)
+				{
+					DaggerfallEntityBehaviour Behavior = GameManager.Instance.PlayerEntityBehaviour;
+					EntityEffectManager DispelManager = Behavior.GetComponent<EntityEffectManager>();
+					DispelManager.ClearSpellBundles();
+				}
+
+				Condition -= 1;
+				Data.hits1 = Condition;
+			}
+
+			return true;
+		}
+
+		public static bool HolyTome(DaggerfallUnityItem item, ItemCollection collection)
+		{
+			ItemData_v1 Data = item.GetSaveData();
+			int Condition = Data.hits1;
+
+			if (Condition > 0)
+			{
+				int Level = Player.Level;
+				Level = (Level * 2) + 8;
+
+				System.Random Drug = new System.Random();
+				RandoI = Drug.Next(0, 101);
+
+				if (RandoI < Level)
+				{
+					DaggerfallEntityBehaviour Behavior = GameManager.Instance.PlayerEntityBehaviour;
+					EntityEffectManager DispelManager = Behavior.GetComponent<EntityEffectManager>();
+					DispelManager.ClearSpellBundles();
+				}
+
+				Condition -= 1;
+				Data.hits1 = Condition;
+			}
+
+			return true;
+		}
+
 		public static void DrugsOnTeleport(GameObject triggerObj, GameObject nextObj)
 		{
 			HasDrugs = 0;
-			HasSold = 0;
 			NPCCheck = 0;
+			TradeCheck = 0;
 		}
 
 		public static void DrugsCourtBegin()
@@ -1523,7 +1624,9 @@ namespace Drugs
 			for (Index = 0; Index < Backpack.Count; Index++)
 			{
 				Drug = Backpack.GetItem(Index);
-				if (Drug.WorldTextureArchive == 30900)
+				ItemData_v1 Data = Drug.GetSaveData();
+
+				if (Data.worldTextureArchive == 30900)
 				{
 					Backpack.RemoveItem(Drug);
 					Index -= 1;
@@ -1535,7 +1638,9 @@ namespace Drugs
 			for (Index = 0; Index < Wagon.Count; Index++)
 			{
 				Drug = Wagon.GetItem(Index);
-				if (Drug.WorldTextureArchive == 30900)
+				ItemData_v1 Data = Drug.GetSaveData();
+
+				if (Data.worldTextureArchive == 30900)
 				{
 					Wagon.RemoveItem(Drug);
 					Index -= 1;
@@ -1549,14 +1654,12 @@ namespace Drugs
 				Player.CrimeCommitted = Crime;
 
 				DrugCrime += 1;
-
-				HasDrugs = 2;
 			}
 		}
 
 		public static void DrugsCourtEnd()
 		{
-			if (HasDrugs > 0)
+			if (HasDrugs == 1)
 			{
 				DrugCrime -= 1;
 				HasDrugs = 0;
@@ -1575,29 +1678,18 @@ namespace Drugs
 				for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
 				{
 					Drug = Backpack.GetItem(DIndex);
-					if (Drug.WorldTextureArchive == 30900)
+					ItemData_v1 Data = Drug.GetSaveData();
+
+					if (Data.worldTextureArchive == 30900)
 					{
 						NewCount += 1;
 					}
 				}
 
-				Wagon = Player.WagonItems;
-				for (DIndex = 0; DIndex < Wagon.Count; DIndex++)
+				if (OldCount > NewCount)
 				{
-					Drug = Wagon.GetItem(DIndex);
-					if (Drug.WorldTextureArchive == 30900)
-					{
-						NewCount += 1;
-					}
+					TradeCheck = 2;
 				}
-
-				if (OldCount != NewCount)
-				{
-					DrugCrime += 2;
-					HasSold = 1;
-				}
-
-				TradeCheck = 2;
 			}
 		}
 
@@ -1650,29 +1742,18 @@ namespace Drugs
 				for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
 				{
 					Drug = Backpack.GetItem(DIndex);
-					if (Drug.WorldTextureArchive == 30900)
+					ItemData_v1 Data = Drug.GetSaveData();
+
+					if (Data.worldTextureArchive == 30900)
 					{
 						NewCount += 1;
 					}
 				}
 
-				Wagon = Player.WagonItems;
-				for (DIndex = 0; DIndex < Wagon.Count; DIndex++)
+				if (OldCount > NewCount)
 				{
-					Drug = Wagon.GetItem(DIndex);
-					if (Drug.WorldTextureArchive == 30900)
-					{
-						NewCount += 1;
-					}
+					TradeCheck = 2;
 				}
-
-				if (OldCount != NewCount)
-				{
-					DrugCrime += 2;
-					HasSold = 1;
-				}
-
-				TradeCheck = 2;
 			}
 		}
 
@@ -2068,7 +2149,7 @@ namespace Drugs
 			}
 
 			collection.RemoveItem(this);
-			//DrugsMod.TotalTaken += 1;
+			DrugsMod.TotalTaken += 1;
 			return true;
 		}
 
@@ -2108,7 +2189,7 @@ namespace Drugs
 			}
 
 			collection.RemoveItem(this);
-			DrugsMod.TotalTaken += 1;
+			//DrugsMod.TotalTaken += 1;
 			return true;
 		}
 
