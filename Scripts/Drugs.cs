@@ -1021,25 +1021,7 @@ namespace Drugs
 				// -------------------------------------------------------------
 
 				// - Crime Code ------------------------------------------------
-				if (TradeCheck == 0)
-				{
-					OldCount = 0;
-
-					Backpack = Player.Items;
-					for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
-					{
-						Drug = Backpack.GetItem(DIndex);
-						ItemData_v1 Data = Drug.GetSaveData();
-
-						if (Data.worldTextureArchive == 30900)
-						{
-							OldCount += 1;
-						}
-					}
-
-					TradeCheck = 1;
-				}
-				else if (TradeCheck == 2)
+				if (TradeCheck == 1)
 				{
 					System.Random Drug = new System.Random();
 					RandoI = Drug.Next(0, 101);
@@ -1146,6 +1128,9 @@ namespace Drugs
 			EnemyEntity.OnLootSpawned += DrugsEnemySpawned;
 			PlayerActivate.OnLootSpawned += DrugsLootSpawned;
 			PopulationManager.OnMobileNPCCreate += DrugsNPCCreated;
+
+			PlayerEnterExit.OnTransitionExterior += DrugsTransitionExterior;
+			PlayerEnterExit.OnTransitionInterior += DrugsTransitionInterior;
 
 			Manager = DaggerfallUI.UIManager;
 			Manager.OnWindowChange += WindowChanged;
@@ -1670,26 +1655,23 @@ namespace Drugs
 
 		public static void DrugsOnTrade(DaggerfallTradeWindow.WindowModes mode, int numItems, int value)
 		{
-			if (TradeCheck == 1)
+			NewCount = 0;
+
+			Backpack = Player.Items;
+			for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
 			{
-				NewCount = 0;
+				Drug = Backpack.GetItem(DIndex);
+				ItemData_v1 Data = Drug.GetSaveData();
 
-				Backpack = Player.Items;
-				for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
+				if (Data.worldTextureArchive == 30900)
 				{
-					Drug = Backpack.GetItem(DIndex);
-					ItemData_v1 Data = Drug.GetSaveData();
-
-					if (Data.worldTextureArchive == 30900)
-					{
-						NewCount += 1;
-					}
+					NewCount += 1;
 				}
+			}
 
-				if (OldCount > NewCount)
-				{
-					TradeCheck = 2;
-				}
+			if (OldCount > NewCount)
+			{
+				TradeCheck = 1;
 			}
 		}
 
@@ -1734,26 +1716,23 @@ namespace Drugs
 
 		public static void DrugsLootSpawned(object sender, EventArgs e)
 		{
-			if (TradeCheck == 1)
+			NewCount = 0;
+
+			Backpack = Player.Items;
+			for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
 			{
-				NewCount = 0;
+				Drug = Backpack.GetItem(DIndex);
+				ItemData_v1 Data = Drug.GetSaveData();
 
-				Backpack = Player.Items;
-				for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
+				if (Data.worldTextureArchive == 30900)
 				{
-					Drug = Backpack.GetItem(DIndex);
-					ItemData_v1 Data = Drug.GetSaveData();
-
-					if (Data.worldTextureArchive == 30900)
-					{
-						NewCount += 1;
-					}
+					NewCount += 1;
 				}
+			}
 
-				if (OldCount > NewCount)
-				{
-					TradeCheck = 2;
-				}
+			if (OldCount > NewCount)
+			{
+				TradeCheck = 1;
 			}
 		}
 
@@ -1787,6 +1766,38 @@ namespace Drugs
 					DrugCrime += 4;
 
 					NPCCheck = 2;
+				}
+			}
+		}
+
+		public static void DrugsTransitionExterior(PlayerEnterExit.TransitionEventArgs args)
+		{
+			OldCount = 0;
+			Backpack = Player.Items;
+			for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
+			{
+				Drug = Backpack.GetItem(DIndex);
+				ItemData_v1 Data = Drug.GetSaveData();
+
+				if (Data.worldTextureArchive == 30900)
+				{
+					OldCount++;
+				}
+			}
+		}
+
+		public static void DrugsTransitionInterior(PlayerEnterExit.TransitionEventArgs args)
+		{
+			OldCount = 0;
+			Backpack = Player.Items;
+			for (DIndex = 0; DIndex < Backpack.Count; DIndex++)
+			{
+				Drug = Backpack.GetItem(DIndex);
+				ItemData_v1 Data = Drug.GetSaveData();
+
+				if (Data.worldTextureArchive == 30900)
+				{
+					OldCount++;
 				}
 			}
 		}
